@@ -7,16 +7,7 @@
 <title>Insert title here</title>
 </head>
 <body>
-        <!-- 푸터-->
-            </div>
-            <!-- /.container-fluid -->
-        </div>
-        <!-- /#page-wrapper -->
-
-    </div>
-    <!-- /#wrapper -->
-
- 
+       
 
 </body>
 

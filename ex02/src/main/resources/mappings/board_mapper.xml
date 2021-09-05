@@ -10,7 +10,6 @@
 		updatedate
 		from tbl_board
 		where bno > 0
-		order by bno desc
 	</select>
 	<select id="read" resultType="BoardVO" parameterType="BoardVO">
 		select bno,

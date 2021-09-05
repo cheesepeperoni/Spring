@@ -21,11 +21,18 @@ public class BoardController {
 	public void list(Model model) {
 		model.addAttribute("list",boardService.getList());
 	}
-	// 단건조회(수정 페이지)
+	// 단건조회
 	@GetMapping("/get")
 	public void get(Model model,BoardVO board) { //bno 파라미터 -> 커맨드 객체
 		model.addAttribute("board",boardService.read(board));
 	}
+	
+	//수정페이지
+	@GetMapping("/modify")
+	public void modify(Model model,BoardVO board) { //bno 파라미터 -> 커맨드 객체
+		model.addAttribute("board",boardService.read(board));
+	}
+	
 	// 수정 처리
 	@PostMapping("/modify")
 	public String modify(BoardVO vo, RedirectAttributes rttr) {
@@ -52,6 +59,15 @@ public class BoardController {
 	// 삭제
 	@PostMapping("/delete")
 	public String delete(BoardVO vo, RedirectAttributes rttr) {
+		int result = boardService.delete(vo);
+		if(result==1) {
+			rttr.addFlashAttribute("result","success");
+		}
+		return "redirect:/board/list";	
+	}
+	// 삭제 get
+	@GetMapping("/delete")
+	public String delete2(BoardVO vo, RedirectAttributes rttr) {
 		int result = boardService.delete(vo);
 		if(result==1) {
 			rttr.addFlashAttribute("result","success");
