@@ -43,9 +43,13 @@
                   <label>Writer</label><input name="writer" class="form-control" readonly="readonly"
                      value='<c:out value="${board.writer}" />'>
                </div>
+               <!-- 0906 -->
+            	  <%--  <input type="hidden" name="pageNum" value="${pageMaker.cri.pageNum}">
+			       <input type="hidden" name="amount" value="${pageMaker.cri.amount}"> --%>
+               
                <button type="submit" class="btn btn-secondary">Modify</button>
                <button type="button" formaction="${pageContext.request.contextPath}/board/delete" class="btn btn-secondary">Delete</button>
-               <button type="button" class="btn btn-secondary" onclick="location.href='${pageContext.request.contextPath }/board/list'">List</button>
+               <button type="button" class="btn btn-secondary" onclick="location.href='${pageContext.request.contextPath}/board/list?pageNum=${cri.pageNum}&amount=${cri.amount}'">List</button>
             </form>
          </div>
       </div>

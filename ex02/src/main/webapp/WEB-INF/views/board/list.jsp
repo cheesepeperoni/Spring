@@ -22,11 +22,16 @@
 <script
 	src="${pageContext.request.contextPath}/resources/vendor/datatables-responsive/dataTables.responsive.js"></script>
 <style>
-.btn{
-	font-weight:bold;
+.btn {
+	font-weight: bold;
 }
-.btn:hover{
-	background-color:#c8c8c8;
+
+.btn:hover {
+	background-color: #c8c8c8;
+}
+
+#pageButton {
+	text-align: center;
 }
 </style>
 <div class="row">
@@ -49,9 +54,9 @@
 			<c:forEach items="${list}" var="board">
 				<tr>
 					<td><c:out value="${board.bno}" /></td>
-					<td><a href="get?bno=${board.bno }">${board.title }</a></td>
-					<td><c:out value="${board.writer }"/></td>
-					<td><c:out value="${board.content }"/></td>
+					<td><a href="${board.bno }" class="move">${board.title }</a></td>
+					<td><c:out value="${board.writer }" /></td>
+					<td><c:out value="${board.content }" /></td>
 					<td><fmt:formatDate value="${board.regdate }" type="both"
 							dateStyle="short" timeStyle="short" /></td>
 					<td><fmt:formatDate value="${board.updatedate}" type="both"
@@ -60,34 +65,99 @@
 			</c:forEach>
 		</tbody>
 	</table>
-<button type="button" class="btn btn-secondary"
-		 onclick="location.href='${pageContext.request.contextPath }/board/register'">등록</button>
+	<button type="button" class="btn btn-secondary"
+		onclick="location.href='${pageContext.request.contextPath }/board/register'">등록</button>
+	<br>
+	<br>
+	<!-- 폼 -->
+	<form id="actionForm" action="list" method="get">
+		<select name="type" style="width: 100px;">
+			<option value="" ${empty pageMaker.cri.type?selected:""}>SELECT</option>
+			<option value="T" ${pageMaker.cri.type=='T'?selected:""}>TITLE</option>
+			<option value="C" ${pageMaker.cri.type=='C'?selected:""}>CONTENT</option>
+			<option value="W" ${pageMaker.cri.type=='W'?selected:""}>WRITER</option>
+			<option value="TC" ${pageMaker.cri.type=='TC'?selected:""}>TITLE
+				OR CONTENT</option>
+			<option value="TW" ${pageMaker.cri.type=='TW'?selected:""}>TITLE
+				OR WRITER</option>
+			<option value="TWC" ${pageMaker.cri.type=='TWC'?selected:""}>TITLE
+				OR CONTENT OR WRITER</option>
+		</select> <input name="keyword" value="${pageMaker.cri.keyword}"> <input
+			type="hidden" name="pageNum" value="${pageMaker.cri.pageNum}">
+		<input type="hidden" name="amount" value="${pageMaker.cri.amount}">
+		<button class="btn btn-secondary"
+			style="background: #EFEFEF; border: 0;">Search</button>
+	</form>
+	<div id="pageButton">
+		<c:if test="${pageMaker.prev}">
+			<a class="btn btn-default" href="${pageMaker.startPage-1}"
+				style="background: #EFEFEF; border: 0">이전</a>
+		</c:if>
+		<c:forEach begin="${pageMaker.startPage}" end="${pageMaker.endPage}"
+			var="num">
+			<a href="${num}">${num}</a>
+		</c:forEach>
+		<c:if test="${pageMaker.next}">
+			<a class="btn btn-default" href="${pageMaker.endPage+1}"
+				style="background: #EFEFEF; border: 0">다음</a>
+		</c:if>
+	</div>
 </div>
 <script>
-	$(function(){
-		$("#board").DataTable();
-	});
-	
-	$(document).ready(function(){
-		var result ='<c:out value="${result}"/>';
-		checkModal(result);
-		
-		function checkModal(result){
-			if(result===''){
-				return;
-			}
-			if(parseInt(result)>0){
-				$(".modla-body").html(
-						"게시글 "+parseInt(result)+" 번이 등록되었습니다");
-			}
-				$(".modal-body").modal("show");			
-		}
-		$("#regBtn").on("click",function(){
-			self.location ="${pageContext.request.contextPath}/board/register";
-		});
-		
-		
+	$(function() {
+		var actionForm = $("#actionForm")
+
+		$(".move")
+				.on(
+						"click",
+						function(e) {
+							e.preventDefault();
+							var bno = $(this).attr("href")
+							actionForm
+									.append('<input type="hidden" name="bno" value="'+ bno +'">')
+							actionForm.attr("action", "get")
+							actionForm.submit();
+						});
+
+		$("#pageButton a").on("click", function(e) {
+			e.preventDefault(); //a, submit
+			var p = $(this).attr("href")
+			$('[name="pageNum"]').val(p)
+			actionForm.submit();
+		})
+		//$("#board").DataTable();
 	});
 </script>
-<br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
 <%@include file="/WEB-INF/views/includes/footer.jsp"%>
