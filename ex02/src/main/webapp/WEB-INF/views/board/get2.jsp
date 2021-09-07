@@ -64,13 +64,15 @@
 						<input type="hidden" name="bno" value="${board.bno}">
 						WRITER: <input name="replyer" placeholder="Enter Your name" style="width: 120px;">
 						CONTENT: <input name="reply">
-						<button type="button" id="savaReply" style="border:0px; height:30px; border-radius:7px;">REPLY SUBMIT</button>
+						<button type="button" id="savaReply"
+							style="border: 0px; height: 30px; border-radius: 7px;">REPLY
+							SUBMIT</button>
 					</form>
 				</div>
 				<!-- 댓글 목록 -->
 				<div class="row">
 					<div class="col-lg-12">
-						<h2 class="page-header" style="font-weight:bold">REPLY LIST</h2>
+						<h2 class="page-header" style="font-weight: bold">REPLY LIST</h2>
 						<ul class="chat">
 						</ul>
 					</div>
@@ -79,55 +81,39 @@
 		</div>
 	</div>
 </div>
+<script src="../resources/js/reply.js"></script>
 <script>
 	let bno = "${board.bno}";
 	$(function(){
 		// 등록 처리
 		$("#savaReply").on("click",function(){
-			$.ajax({
-				url:"../reply/",
-				method:"post",
-				data:$('#replyForm').serialize(),
-				dataType:"json",
-				success:function(data){
-					console.log(data);
-					str ='<li class="left clearfix">'
-						   +'<div>'
-						   +'<div class="header">'
-						   +'	<strong class="primary-font">'+data.replyer+'</strong>'
-						   +'	<small class="pull-right text-muted">'+data.replydate+'</small>'
-						   +	'</div>'
-						   +'		<p>'+ data.reply+'</p>'
-						   +'	</div>'
-						   +'	</li>';
-				 $(".chat").append(str);
-				}
+			replyService.add(function(data){
+				$(".chat").append(makeLi(data));
 			});
 		});
 		
+	replyService.getList({bno:bno}, listCallback);
 		// 목록 조회
-		$.ajax({	
-			url:"../reply/",	// method(or type):"get"
-			data:{bno:bno},		//"bno=145"
-			dataType:"json",	// 응답결과가 json
-			success:function(datas){
-				//console.log(datas);
-				str ="";
-				for(i=0;i<datas.length;i++){
-					str +='';
-				str+='<li class="left clearfix">'
-				   +'<div>'
-				   +'<div class="header">'
-				   +'	<strong class="primary-font">'+datas[i].replyer+'</strong>'
-				   +'	<small class="pull-right text-muted">'+datas[i].replydate+'</small>'
-				   +	'</div>'
-				   +'		<p>'+ datas[i].reply+'</p>'
-				   +'	</div>'
-				   +'	</li>';
-				}
-				$(".chat").html(str);
-			}
-		});
+	function listCallback(datas){
+		//console.log(datas);
+		var str ="";
+		for(i=0;i<datas.length;i++){
+			str+= makeLi(datas[i]);
+		}
+		$(".chat").html(str);
+	}
+	// 댓글 태그 만들기
+	function makeLi(data){
+		return '<li class="left clearfix">'
+		   +'<div>'
+		   +'<div class="header">'
+		   +'	<strong class="primary-font">'+data.replyer+'</strong>'
+		   +'	<small class="pull-right text-muted">'+data.replydate+'</small>'
+		   +	'</div>'
+		   +'		<p>'+ data.reply+'</p>'
+		   +'	</div>'
+		   +'	</li>';
+		}
 	})
 </script>
 <br>
