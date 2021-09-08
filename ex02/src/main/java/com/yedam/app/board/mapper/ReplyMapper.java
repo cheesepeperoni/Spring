@@ -16,4 +16,8 @@ public interface ReplyMapper {
 	public int update(ReplyVO vo);
 
 	public int delete(ReplyVO vo);
+	
+	// 해당 게시글의 댓글 수를 조회
+	public int getCountByBno(long bno);
+	
 }

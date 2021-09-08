@@ -21,7 +21,7 @@
    <!-- /.col-lg-12 -->
 </div>
 <!-- /.row -->
-<div class="row">0
+<div class="row">
    <div class="col-lg-12">
       <form role="form" action="${pageContext.request.contextPath }/board/modify" method="post">
          <div class="form-group">
