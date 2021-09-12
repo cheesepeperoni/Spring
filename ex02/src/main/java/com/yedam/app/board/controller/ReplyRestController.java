@@ -41,7 +41,7 @@ public class ReplyRestController {
 	@PostMapping("/")	// post,get : 파라미터 질의 문자열(query string) -> id=100$pw=111&name=phoebe
 	public ReplyVO insert(ReplyVO vo) {
 		replyService.insert(vo);
-		return vo;
+		return replyService.read(vo);
 	}
 
 	// 수정
