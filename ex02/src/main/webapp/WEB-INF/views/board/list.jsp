@@ -48,6 +48,7 @@
 				<th>CONTENTS</th>
 				<th>REGDATE</th>
 				<th>UPDATE-DATE</th>
+				<th>REPLY</th>
 			</tr>
 		</thead>
 		<tbody>
@@ -61,6 +62,7 @@
 							dateStyle="short" timeStyle="short" /></td>
 					<td><fmt:formatDate value="${board.updatedate}" type="both"
 							dateStyle="short" timeStyle="short" /></td>
+					<td><c:out value="${board.replycnt }" /></td>
 				</tr>
 			</c:forEach>
 		</tbody>

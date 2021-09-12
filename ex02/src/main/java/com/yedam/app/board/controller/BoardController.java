@@ -82,7 +82,7 @@ public class BoardController {
 		return "redirect:/board/list";
 	}
 
-	// 삭제 get
+	// 삭제 get(나은)
 	@GetMapping("/delete")
 	public String delete2(BoardVO vo, RedirectAttributes rttr) {
 		int result = boardService.delete(vo);
