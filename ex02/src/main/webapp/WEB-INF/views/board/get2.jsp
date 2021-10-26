@@ -97,8 +97,8 @@
 	function listCallback(datas){
 		//console.log(datas);
 		var str ="";
-		for(i=0;i<datas.length;i++){
-			str+= makeLi(datas[i]);
+		for(i=0;i<datas.list.length;i++){
+			str+= makeLi(datas.list[i]);
 		}
 		$(".chat").html(str);
 	}

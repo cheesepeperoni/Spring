@@ -4,6 +4,7 @@ import java.util.List;
 
 import org.apache.ibatis.annotations.Param;
 
+import com.yedam.app.board.domain.BoardAttachVO;
 import com.yedam.app.board.domain.BoardVO;
 import com.yedam.app.board.domain.Criteria;
 
@@ -24,4 +25,5 @@ public interface BoardMapper {
 	// 댓글 수
 	public void updateReplycnt(@Param("bno") long bno, @Param("amount") int amount);
 	
+	public BoardAttachVO attachRead(String uuid);
 }
