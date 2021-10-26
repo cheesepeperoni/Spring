@@ -1,3 +1,4 @@
+
 package com.yedam.app.board.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -60,3 +61,4 @@ public class StudyController {
 	}
 
 }
+

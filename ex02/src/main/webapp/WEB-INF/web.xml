@@ -47,5 +47,8 @@
 		<filter-name>encodingFilter</filter-name>
 		<url-pattern>/*</url-pattern>
 	</filter-mapping>
+<<<<<<< HEAD
 
+=======
+>>>>>>> branch 'main' of https://github.com/cheesepeperoni/Spring.git
 </web-app>
