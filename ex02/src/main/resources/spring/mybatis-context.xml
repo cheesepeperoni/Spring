@@ -22,5 +22,6 @@
 <!-- 	<bean class="org.mybatis.spring.mapper.MapperScannerConfigurer">
 		<property name="basePackage" value="com.yedam.app.**.mapper" />
 	</bean> -->
+	
 	<mybatis-spring:scan	base-package="com.yedam.app.**.mapper" />
 </beans>

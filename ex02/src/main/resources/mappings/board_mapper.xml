@@ -42,7 +42,7 @@
 		SELECT *
 		FROM (
 			SELECT 
-			/* + INDEX_DESC(TBL_BOARD SYS_C007253) */
+			/*+ INDEX_DESC(TBL_BOARD SYS_C007253) */
 				ROWNUM RN,
 				 BNO, TITLE, CONTENT, WRITER, REGDATE, UPDATEDATE , REPLYCNT
 			FROM TBL_BOARD
@@ -83,10 +83,6 @@
 		#{writer}
 		)
 	</insert>
-	
-	
-	
-	
 	<update id="update">
 		update tbl_board set title=#{title},
 		content=#{content},

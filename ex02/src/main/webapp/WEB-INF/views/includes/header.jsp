@@ -302,6 +302,9 @@
                         <li>
                             <a href="${pageContext.request.contextPath }/board/list"><i class="fa fa-github-alt"></i> BOARD</a>
                         </li>
+                        <li>
+                            <a href="${pageContext.request.contextPath }/signIn/list"><i class="fa fa-github-alt"></i> SIGN IN</a>
+                        </li>
                     </ul>
                 </div>
                 <!-- /.sidebar-collapse -->
